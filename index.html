@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>DFES Bushfire Risk Management</title>
+
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no" />
+
+	<script src="./scripts/app/jquery.js" defer></script>
+	<script src="./scripts/app/bootstrap.js" defer></script>
+	<script src="./scripts/app/application.js" defer></script>
+	
+	
+	<script src="./scripts/modules/assessments.js" defer></script>
+	<script src="./scripts/modules/human_settlement_risk.js" defer></script>
+	<script src="./scripts/modules/economic_risk.js" defer></script>
+	<script src="./scripts/modules/cultural_risk.js" defer></script>
+	<script src="./scripts/modules/environmental_risk.js" defer></script>
+	
+	<script src="./scripts/modules/asset_vulnerability.js" defer></script>
+	<script src="./scripts/modules/vegetation.js" defer></script>
+	<script src="./scripts/modules/impact_level.js" defer></script>
+	
+	<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link href="./styles/bootstrap.css" rel="stylesheet">
+	<link href="./styles/application.css" rel="stylesheet">
+</head>
+<body>
+
+	<header>
+		<div id="menu" class="material-icons">menu</div>
+		<h4>Bushfire Risk Management Planning</h4>
+	</header>
+	
+	<div id="sidebar">
+		<div class="sticky-footer-body">
+			<div class="logos">
+				<img src="./images/app/dfes_logo.svg">
+				<img src="./images/app/coat_of_arms.svg">
+			</div>
+			<ul>
+				<li><a href="#about"><i class="material-icons">info</i> About</a></li>
+				
+				<li class="title"><span>Assessment Tools</span></li>
+				<li>
+					<a href="#human_settlement_risk"><i class="material-icons">person</i> Human Settlement Risk</a>
+					<ul>
+						<li><a href="#vegetation"><i class="material-icons">subdirectory_arrow_right</i> Vegetation Classification</a></li>
+						<li><a href="#canopy"><i class="material-icons">subdirectory_arrow_right</i> Canopy Cover</a></li>
+						<li><a href="#slope"><i class="material-icons">subdirectory_arrow_right</i> Determine Slope</a></li>
+						<li><a href="#asset_vulnerability"><i class="material-icons">subdirectory_arrow_right</i> Asset Vulnerability</a></li>
+					</ul>
+				</li>
+				<li>
+					<a href="#economic_risk"><i class="material-icons">attach_money</i> Economic Risk</a>
+					<ul>
+						<li><a href="#vegetation"><i class="material-icons">subdirectory_arrow_right</i> Vegetation Classification</a></li>
+						<li><a href="#canopy"><i class="material-icons">subdirectory_arrow_right</i> Canopy Cover</a></li>
+						<li><a href="#slope"><i class="material-icons">subdirectory_arrow_right</i> Determine Slope</a></li>
+						<li><a href="#asset_susceptibility"><i class="material-icons">subdirectory_arrow_right</i> Asset Susceptibility</a></li>
+						<li><a href="#impact_level"><i class="material-icons">subdirectory_arrow_right</i> Level of Impact</a></li>
+					</ul>
+				</li>
+				<li>
+					<a href="#cultural_risk"><i class="material-icons">public</i> Cultural Risk</a>
+					<ul>
+						<li><a href="#vegetation"><i class="material-icons">subdirectory_arrow_right</i> Vegetation Classification</a></li>
+						<li><a href="#canopy"><i class="material-icons">subdirectory_arrow_right</i> Canopy Cover</a></li>
+						<li><a href="#slope"><i class="material-icons">subdirectory_arrow_right</i> Determine Slope</a></li>
+						<li><a href="#asset_vulnerability_cultural"><i class="material-icons">subdirectory_arrow_right</i> Asset Vulnerability</a></li>
+					</ul>
+				</li>
+				<li>
+					<a href="#environmental_risk"><i class="material-icons">landscape</i> Environmental Risk</a>
+					<ul>
+						<li><a href="#geographic_extent"><i class="material-icons">subdirectory_arrow_right</i> Geographic Extent</a></li>
+						<li><a href="#conservation_status"><i class="material-icons">subdirectory_arrow_right</i> Conservation Status</a></li>
+						<li><a href="#potential_fire_impact"><i class="material-icons">subdirectory_arrow_right</i> Potential Fire Impact</a></li>
+					</ul>
+				</li>
+				
+				<li class="title"><span>Forms</span></li>
+				<li><a href="#prescribed_burning"><i class="material-icons">whatshot</i> Prescribed Buring</a></li>
+				
+				<li class="title"><span>Information</span></li>
+				<li><a href="#litter_depth"><i class="material-icons">nature</i> Litter Depth</a></li>
+				<li><a href="#litter_accumulation"><i class="material-icons">nature</i> Litter Accumulation</a></li>
+			</ul>
+		</div>
+		
+		<div class="sticky-footer">
+			Copyright &copy; <script>document.write((new Date).getFullYear())</script><br>Department of Fire &amp; Emergency Services
+		</div>
+		
+	</div>
+
+	<div id="content">
+	
+		<div class="margin">
+
+			<div id="pages">
+				<div page-id="about" class="page">
+					<h3>Bushfire Risk Management Tools</h3>
+					<p>Welcome to the DFES Bushfire Risk Management analysis tools.
+
+					<p>This app has been developed in house by the Metropolitan BRMO's with the assistance of Firefighter Maughan, to assist personnel in BRM Planning with risk assessments and prescribed burn planning.
+
+					<p>To get started, open the menu on the left and select one of the asset category assessment tools. 
+						<br>For further information on asset category classifications, please refer to the <a target="_blank" href="https://www.dfes.wa.gov.au/waemergencyandriskmanagement/obrm/Documents/OBRM-Guidelines-for-Preparing-a-Bushfire-Risk-Management.pdf"><i>OBRM Guidelines for Preparing a Bushfire Risk Management Plan</i></a>.
+
+					<p>Should you require assistance, wish to provide feedback or have enhancement requests, please contact the Metro BRMO's at <a href="mailto:UCL@dfes.wa.gov.au">UCL@dfes.wa.gov.au</a>.
+				</div>
+				
+				<div page-id="vegetation" class="page classifier">
+					<h3>Vegetation Classification</h3>
+					<ul class="list-group data"></ul>
+					<button class="btn btn-default update">&laquo; Update Risk Register</button>
+				</div>
+				
+				<div page-id="asset_vulnerability" class="page classifier">
+					<h3>Asset Vulnerability</h3>
+					<ul class="list-group data"></ul>
+					<button class="btn btn-default update">&laquo; Update Risk Register</button>
+				</div>
+				
+				<div page-id="impact_level" class="page classifier">
+					<h3>Level of Impact</h3>
+					<ul class="list-group data"></ul>
+					<button class="btn btn-default update">&laquo; Update Risk Register</button>
+				</div>
+				
+				<div page-id="human_settlement_risk" class="page assessment">
+					<h3>Human Settlement Risk Assessment</h3>
+					<form onsubmit="return false">
+						<table>
+							<tbody class="asset">
+								<tr>
+									<td>
+										<div class="input">
+											<span>Asset Name</span>
+											<input class="form-control" type="text">
+										</div>
+										<div class="input">
+											<span>Asset Address</span>
+											<input class="form-control" type="text">
+										</div>
+										<div class="input">
+											<span>Asset PIN Number</span>
+											<input class="form-control" name="asset_pin" type="tel">
+										</div>
+									</td>
+									<td></td>
+								</tr>
+							</tbody>
+							<tbody class="likelihood">
+								<tr><td colspan="2" class="title"><hr>Likelihood Assessment</td></tr>
+								<tr>
+									<td>
+										<div class="input">
+											<span>Vegetation Age</span>
+											<select class="form-control" name="likelihood_vegetation_age">
+												<option></option>
+												<option value="03">0 to 3 years</option>
+												<option value="36">3 to 6 years</option>
+												<option value="6+">6 years+</option>
+											</select>
+										</div>
+										<div class="input">
+											<span>Separation Distance (metres)</span>
+											<select class="form-control" name="separation_distance">
+												<option></option>
+												<option value="0">&lt;= 10 metres</option>
+												<option value="10">10 to 20 metres</option>
+												<option value="20">20 to 30 metres</option>
+												<option value="30">30 to 40 metres</option>
+												<option value="40">40 to 50 metres</option>
+												<option value="50">50 to 60 metres</option>
+												<option value="60">60 to 70 metres</option>
+												<option value="70">70 to 80 metres</option>
+												<option value="80">80 to 90 metres</option>
+												<option value="90">90 to 100 metres</option>
+												<option value="101">100 + metres</option>
+											</select>
+										</div>
+									</td>
+									<td>
+										<div class="input">
+											<span>Likelihood Rating</span>
+											<input class="form-control" type="text" name="likelihood_rating" readonly="readonly">
+										</div>
+									</td>
+								</tr>
+							</tbody>
+							<tbody class="hazard">
+								<tr><td colspan="2" class="title"><hr>Hazard Assessment</td></tr>
+								<tr>
+									<td colspan="2">
+										<div class="input">
+											<span>Low Threat</span>
+											<div class="btn-group">
+												<button class="btn btn-default">Yes<input type="radio" name="low_threat" value="Yes"></button>
+												<button class="btn btn-default">No<input type="radio" name="low_threat" value="No"></button>
+											</div>
+											<button class="btn btn-default help" data-tooltip="low_threat">?</button>
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<div class="input">
+											<span>Vegetation Species / Classification</span>
+											<div class="input-group">
+												<select class="form-control" name="vegetation_species">
+													<option></option>
+													<option>Forest (other)</option>
+													<option>Grassland</option>
+													<option>Jarrah</option>
+													<option>Karri</option>
+													<option>Mallee/Mulga</option>
+													<option>Rainforest</option>
+													<option>Scrub</option>
+													<option>Shrubland</option>
+													<option>Woodland</option>
+												</select>
+												<span class="input-group-btn">
+													<button class="btn btn-default help pull-right" data-goto="vegetation">?</button>
+												</span>
+											</div>
+										</div>
+										<div class="input">
+											<span>Vegetation Age</span>
+											<select class="form-control" name="vegetation_age">
+												<option></option>
+											</select>
+										</div>
+										<div class="input">
+											<span>Canopy Cover (%)</span>
+											<div class="input-group">
+												<select class="form-control" name="canopy_cover">
+													<option></option>
+												</select>
+												<span class="input-group-btn">
+													<button class="btn btn-default help pull-right" data-goto="canopy">?</button>
+												</span>
+											</div>
+										</div>
+										<div class="input">
+											<span>Site Slope (Asset to veg.)</span>
+											<div class="input-group">
+												<select class="form-control pull-left" name="site_slope">
+													<option></option>
+													<option value="0">Flat</option>
+													<optgroup label="Upslope">
+														<option value="-5">Upslope &gt;0&deg; to 5&deg;</option>
+														<option value="-10">Upslope &gt;5&deg; to &lt;= 10&deg;</option>
+														<option value="-15">Upslope &gt;10&deg; to &lt;= 15&deg;</option>
+														<option value="-15">Upslope &gt;15&deg;</option>
+													</optgroup>
+													<optgroup label="Downslope">
+														<option value="5">Downslope &gt;0&deg; to 5&deg;</option>
+														<option value="10">Downslope &gt;5&deg; to &lt;= 10&deg;</option>
+														<option value="15">Downslope &gt;10&deg; to &lt;= 15&deg;</option>
+														<option value="15">Downslope &gt;15&deg;</option>
+													</optgroup>
+												</select>
+												<span class="input-group-btn">
+													<button class="btn btn-default help pull-right" data-goto="slope">?</button>
+												</span>
+											</div>
+										</div>
+										<div class="input">
+											<span>Effective Slope (Under veg.)</span>
+											<div class="input-group">
+												<select class="form-control pull-left" name="effective_slope">
+													<option></option>
+													<option value="0">Flat</option>
+													<optgroup label="Upslope">
+														<option value="-5">Upslope &gt;0&deg; to 5&deg;</option>
+														<option value="-10">Upslope &gt;5&deg; to &lt;= 10&deg;</option>
+														<option value="-15">Upslope &gt;10&deg; to &lt;= 15&deg;</option>
+														<option value="-15">Upslope &gt;15&deg;</option>
+													</optgroup>
+													<optgroup label="Downslope">
+														<option value="5">Downslope &gt;0&deg; to 5&deg;</option>
+														<option value="10">Downslope &gt;5&deg; to &lt;= 10&deg;</option>
+														<option value="15">Downslope &gt;10&deg; to &lt;= 15&deg;</option>
+														<option value="15">Downslope &gt;15&deg;</option>
+													</optgroup>
+												</select>
+												<span class="input-group-btn">
+													<button class="btn btn-default help pull-right" data-goto="slope">?</button>
+												</span>
+											</div>
+										</div>
+									</td>
+									<td>
+										<div class="input">
+											<span>Vegetation Height</span>
+											<input class="form-control" type="text" name="vegetation_height" readonly="readonly">
+										</div>
+										<div class="input">
+											<span>Overall Fuel Load</span>
+											<input class="form-control" type="text" name="overall_fuel_load" readonly="readonly">
+										</div>
+										<div class="input">
+											<span>Surface Fuel Load</span>
+											<input class="form-control" type="text" name="surface_fuel_load" readonly="readonly">
+										</div>
+										<div class="input">
+											<span>Hazard Rating</span>
+											<input class="form-control" type="text" name="hazard_rating" readonly="readonly">
+										</div>
+									</td>
+								</tr>
+							</tbody>
+							<tr><td colspan="2" class="title"><hr>Ratings</td></tr>
+							<tr>
+								<td>
+									<div class="input">
+										<span>Asset Vulnerability</span>
+										<div class="input-group">
+											<select class="form-control" name="asset_vulnerability">
+												<option></option>
+												<option>Low</option>
+												<option>Moderate</option>
+												<option>High</option>
+											</select>
+											<span class="input-group-btn">
+												<button class="btn btn-default help pull-right" data-goto="asset_vulnerability">?</button>
+											</span>
+										</div>
+									</div>
+								</td>
+								<td>
+									<div class="input">
+										<span>Consequence Rating</span>
+										<input class="form-control" type="text" name="consequence_rating" readonly="readonly">
+									</div>
+									<div class="input">
+										<span>Risk Rating</span>
+										<input class="form-control" type="text" name="risk_rating" readonly="readonly">
+									</div>
+								</td>
+							</tr>
+							<tr><td colspan="2" class="title"><hr>Treatment Details</td></tr>
+							<tr>
+								<td>
+									<div class="input">
+										<span>Proposed Treatment</span>
+										<select class="form-control">
+											<option></option>
+											<option>Slashing</option>
+											<option>Mulching</option>
+											<option>Firebreak</option>
+											<option>Prescribed Burning</option>
+											<option>Chemical Treatment</option>
+											<option>Other</option>
+										</select>
+									</div>
+									<div class="input">
+										<span>Estimate Quote</span>
+										<input class="form-control" type="text">
+									</div>
+								</td>
+							</tr>
+							<tbody class="footer">
+								<tr>
+									<td colspan="2">
+										<div class="input">
+											<span>Comments</span>
+											<textarea class="form-control" rows="3"></textarea>
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<td colspan="2" style="padding:5px">
+										<button class="btn btn-success send_email">Send as Email</button>
+										<input type="reset" class="btn btn-default pull-right">
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</form>
+				</div>
+				
+				<div page-id="economic_risk" class="page assessment">
+					<h3>Economic Risk Assessment</h3>
+					<form onsubmit="return false">
+						<table>
+							<tr><td colspan="2" class="title"><hr>Ratings</td></tr>
+							<tr>
+								<td>
+									<div class="input">
+										<span>Asset Susceptibility</span>
+										<div class="input-group">
+											<select class="form-control" name="asset_susceptibility">
+												<option></option>
+												<option>Low</option>
+												<option>Moderate</option>
+												<option>High</option>
+											</select>
+											<span class="input-group-btn">
+												<button class="btn btn-default help pull-right" data-goto="asset_susceptibility">?</button>
+											</span>
+										</div>
+									</div>
+									<div class="input">
+										<span>Level of Impact</span>
+										<div class="input-group">
+											<select class="form-control" name="impact_level">
+												<option></option>
+												<option>Local</option>
+												<option>Regional</option>
+												<option value="State">State or Critical</option>
+											</select>
+											<span class="input-group-btn">
+												<button class="btn btn-default help pull-right" data-goto="impact_level">?</button>
+											</span>
+										</div>
+									</div>
+								</td>
+								<td>
+									<div class="input">
+										<span>Vulnerability Assessment</span>
+										<input class="form-control" type="text" name="asset_vulnerability" readonly="readonly">
+									</div>
+									<div class="input">
+										<span>Consequence Rating</span>
+										<input class="form-control" type="text" name="consequence_rating" readonly="readonly">
+									</div>
+									<div class="input">
+										<span>Risk Rating</span>
+										<input class="form-control" type="text" name="risk_rating" readonly="readonly">
+									</div>
+								</td>
+							</tr>
+							<tr><td colspan="2" class="title"><hr></td></tr>
+						</table>
+					</form>
+				</div>
+				
+				<div page-id="cultural_risk" class="page assessment">
+					<h3>Cultural Risk Assessment</h3>
+					<form onsubmit="return false">
+						<table>
+							<tr><td colspan="2" class="title"><hr>Ratings</td></tr>
+							<tr>
+								<td>
+									<div class="input">
+										<span>Asset Vulnerability</span>
+										<div class="input-group">
+											<select class="form-control" name="asset_vulnerability">
+												<option></option>
+												<option>Low</option>
+												<option>Moderate</option>
+												<option>High</option>
+											</select>
+											<span class="input-group-btn">
+												<button class="btn btn-default help pull-right" data-goto="asset_vulnerability_cultural">?</button>
+											</span>
+										</div>
+									</div>
+								</td>
+								<td>
+									<div class="input">
+										<span>Consequence Rating</span>
+										<input class="form-control" type="text" name="consequence_rating" readonly="readonly">
+									</div>
+									<div class="input">
+										<span>Risk Rating</span>
+										<input class="form-control" type="text" name="risk_rating" readonly="readonly">
+									</div>
+								</td>
+							</tr>
+							<tr><td colspan="2" class="title"><hr></td></tr>
+						</table>
+					</form>
+				</div>
+				
+				<div page-id="environmental_risk" class="page assessment">
+					<h3>Environmental Risk Assessment</h3>
+					<form onsubmit="return false">
+						<table>
+							<tr><td colspan="2" class="title"><hr>Ratings</td></tr>
+							<tr>
+								<td>
+									<div class="input">
+										<span>Geographic Extent</span>
+										<div class="input-group">
+											<select class="form-control" name="geographic_extent">
+												<option></option>
+												<option>Highly Restricted</option>
+												<option>Restricted</option>
+												<option>Widespread</option>
+											</select>
+											<span class="input-group-btn">
+												<button class="btn btn-default help pull-right" data-goto="geographic_extent">?</button>
+											</span>
+										</div>
+									</div>
+									<div class="input">
+										<span>Conservation Status</span>
+										<div class="input-group">
+											<select class="form-control" name="conservation_status">
+												<option></option>
+												<option>Local Conservation</option>
+												<option>Priority</option>
+												<option>Threatened</option>
+											</select>
+											<span class="input-group-btn">
+												<button class="btn btn-default help pull-right" data-goto="conservation_status">?</button>
+											</span>
+										</div>
+									</div>
+									<div class="input">
+										<span>Potential Impact of Fire</span>
+										<div class="input-group">
+											<select class="form-control" name="potential_fire_impact">
+												<option></option>
+												<option value="Sensitive">Fire Sensitive / Exclude Fire</option>
+												<option value="Influenced">Fire Influenced / Restrict Fire</option>
+												<option value="Dependent">Fire Dependent / No Conditions</option>
+											</select>
+											<span class="input-group-btn">
+												<button class="btn btn-default help pull-right" data-goto="potential_fire_impact">?</button>
+											</span>
+										</div>
+									</div>
+								</td>
+								<td>
+									<div class="input">
+										<span>Vulnerability Assessment</span>
+										<input class="form-control" type="text" name="asset_vulnerability" readonly="readonly">
+									</div>
+									<div class="input">
+										<span>Consequence Rating</span>
+										<input class="form-control" type="text" name="consequence_rating" readonly="readonly">
+									</div>
+									<div class="input">
+										<span>Risk Rating</span>
+										<input class="form-control" type="text" name="risk_rating" readonly="readonly">
+									</div>
+								</td>
+							</tr>
+							<tr><td colspan="2" class="title"><hr></td></tr>
+						</table>
+					</form>
+				</div>
+				
+				<div page-id="prescribed_burning" class="page">
+					<h3>Prescribed Burning</h3>
+					
+					<p>DFES currently provide Fuel Assessment documents which you can download and complete:
+					
+					<ul style="margin-bottom:20px">
+						<li>Excel: <a target="_blank" href="./documents/Fuel Assessment Sheet DEFFM.xlsx">Fuel Assessment Sheet for Forest Fuels (DEFFM)</a>
+						<li>Excel: <a target="_blank" href="./documents/Red Book Fuel Assessment Sheet.xlsx">Red Book Fuel Assessment Spreadsheet</a>
+						<li>Word: <a target="_blank" href="./documents/Prescribed Burn Reconnaissance Form.docx">Prescribed Burn Reconnaissance Form</a>
+					</ul>
+
+					<h3>Apple Users</h3>
+					<p>If you are using an iOS Device, you will need to then open the spreadsheet in Excel or Word:
+					<p><img src="./images/information/open-in-excel.png">
+					
+				</div>
+				
+				<div page-id="asset_vulnerability_cultural" class="page info">
+					<h3>Asset Vulnerability</h3>
+					<div class="scroll">
+						<img src="./images/information/asset_vulnerability_cultural.PNG">
+					</div>
+				</div>
+				
+				<div page-id="potential_fire_impact" class="page info">
+					<h3>Potential Impact of Fire</h3>
+					<div class="scroll">
+						<img src="./images/information/potential_fire_impact.PNG">
+					</div>
+				</div>
+				
+				<div page-id="geographic_extent" class="page info">
+					<h3>Geographic Extent</h3>
+					<div class="scroll">
+						<img src="./images/information/geographic_extent.PNG">
+					</div>
+				</div>
+				
+				<div page-id="conservation_status" class="page info">
+					<h3>Conservation Status</h3>
+					<div class="scroll">
+						<img src="./images/information/conservation_status.PNG">
+					</div>
+				</div>
+				
+				<div page-id="slope" class="page">
+					<h3>Determine Slope</h3>
+					<table class="slope1">
+						<tr class="title">
+							<td></td>
+							<td>Slope from Asset to Vegetation</td>
+							<td>Slope Under Vegetation</td>
+						</tr>
+						<tr>
+							<td><img src="./images/information/slope1.png"></td>
+							<td>Upslope</td>
+							<td>Upslope</td>
+						</tr>
+						<tr>
+							<td><img src="./images/information/slope2.png"></td>
+							<td>Flat</td>
+							<td>Upslope</td>
+						</tr>
+						<tr>
+							<td><img src="./images/information/slope3.png"></td>
+							<td>Downslope</td>
+							<td>Upslope</td>
+						</tr>
+						<tr>
+							<td><img src="./images/information/slope4.png"></td>
+							<td>Upslope</td>
+							<td>Downslope</td>
+						</tr>
+						<tr>
+							<td><img src="./images/information/slope5.png"></td>
+							<td>Flat</td>
+							<td>Downslope</td>
+						</tr>
+						<tr>
+							<td><img src="./images/information/slope6.png"></td>
+							<td>Downslope</td>
+							<td>Downslope</td>
+						</tr>
+					</table>
+					<table class="slope2">
+						<tr class="title">
+							<td>Degrees</td>
+							<td>Slope Type</td>
+							<td>Description of Degrees</td>
+						</tr>
+						<tr>
+							<td>0 degrees</td>
+							<td>Flat Land</td>
+							<td>No degrees</td>
+						</tr>
+						<tr>
+							<td>0 &lt;= x &lt;=5 degrees</td>
+							<td>Upslope or Downslope</td>
+							<td>Level ground</td>
+						</tr>
+						<tr>
+							<td>5 &lt; x &lt;=10 degrees</td>
+							<td>Upslope or Downslope</td>
+							<td>Easy to walk, but cycling is difficult – moderate to walk, too steep for cycling</td>
+						</tr>
+						<tr>
+							<td>10 &lt; x &lt;=15 degrees</td>
+							<td>Upslope or Downslope</td>
+							<td>Moderate to walk, too steep for cycling – hard climb, limit of 2WD roads</td>
+						</tr>
+						<tr>
+							<td>15 &lt; x degrees</td>
+							<td>Upslope or Downslope</td>
+							<td>Difficult to climb</td>
+						</tr>
+					</table>
+				</div>
+				
+				<div page-id="canopy" class="page">
+					<h3>Canopy Cover</h3>
+					<p>If you don't have access to a tool such as a densitometer, the following images can be used to estimate canopy cover when assessing the hazard vegetation.
+					
+					<p>When standing at the sampling point/s, look directly upwards and compare the average tree canopy viewed to the tile options below, to ascertain the percentage canopy cover. 
+					
+					<p>Some practitioners use a small mirror placed next to the images to reflect the canopy above.  This may make it easier to compare the canopy to the image.  Each quarter of any one square has the same percentage of cover.
+					
+					<center><img src="./images/information/canopy.png"></center>
+					
+					<hr>
+					
+					<p><img src="./images/information/canopy_app.png" align="left" width="50" style="margin-right:10px">Alternative tools for determining the canopy cover percentage include the images provided above, or using an app on your phone or tablet, such as Canopy App.
+					
+					<p>
+					<a target="_blank" href="https://itunes.apple.com/au/app/canopyapp/id926943048?mt=8"><img src="./images/information/app-store.svg"></a>
+					<a target="_blank" href="https://play.google.com/store/apps/details?id=edu.unh.mobile.canopyapp"><img src="./images/information/play-store.svg"></a>
+				</div>
+				
+				<div page-id="litter_depth" class="page info">
+					<h3>Litter Depth</h3>
+					<table>
+						<tr class="title">
+							<td rowspan="3">Litter Depth (mm)</td>
+							<td colspan="6">Forest Type</td>
+						</tr>
+						<tr class="title">
+							<td>Karri dominant</td>
+							<td>Mixed M, J, K*</td>
+							<td>Jarrah dominant</td>
+							<td>P. pinaster needle</td>
+							<td>P. radiate needle</td>
+							<td>Wandoo</td>
+						</tr>
+						<tr class="title">
+							<td colspan="6">Litter weight (tonnes/ha)</td>
+						</tr>
+						<tr><td>5</td><td>3.2</td><td>2.6</td><td>2.7</td><td>2.5</td><td>2.8</td><td>4.4</td></tr>
+						<tr><td>10</td><td>6.4</td><td>5.1</td><td>5.3</td><td>4.9</td><td>5.2</td><td>8.8</td></tr>
+						<tr><td>15</td><td>9.6</td><td>7.7</td><td>8.0</td><td>7.4</td><td>7.2</td><td>13.2</td></tr>
+						<tr><td>20</td><td>13.0</td><td>10.3</td><td>11.0</td><td>10.0</td><td>9.0</td><td>17.6</td></tr>
+						<tr><td>25</td><td>16.0</td><td>13.0</td><td>13.0</td><td>12.4</td><td>10.7</td><td>22.0</td></tr>
+						<tr><td>30</td><td>19.0</td><td>15.0</td><td>16.0</td><td>15.0</td><td>12.0</td><td>26.4</td></tr>
+						<tr><td>35</td><td>23.0</td><td>17.0</td><td>19.0</td><td>17.0</td><td>14.0</td><td>30.0</td></tr>
+						<tr><td>40</td><td>26.0</td><td>19.0</td><td>21.0</td><td>20.0</td><td>16.0</td><td></td></tr>
+						<tr><td>45</td><td>29.0</td><td>22.0</td><td>24.0</td><td>22.0</td><td>18.0</td><td></td></tr>
+						<tr><td>50</td><td>32.0</td><td>25.0</td><td>27.0</td><td>25.0</td><td>20.0</td><td></td></tr>
+						<tr><td>55</td><td>35.0</td><td>27.0</td><td>29.0</td><td>27.0</td><td>22.0</td><td></td></tr>
+						<tr><td>60</td><td>39.0</td><td></td><td></td><td>29.0</td><td>24.0</td><td></td></tr>
+						<tr><td>65</td><td>42.0</td><td></td><td></td><td>31.0</td><td>26.0</td><td></td></tr>
+						<tr><td>70</td><td>45.0</td><td></td><td></td><td>33.0</td><td>28.0</td><td></td></tr>
+						<tr><td>80</td><td>51.0</td><td></td><td></td><td>37.0</td><td>31.0</td><td></td></tr>
+						<tr><td>90</td><td>58.0</td><td></td><td></td><td>41.0</td><td>34.0</td><td></td></tr>
+						<tr><td>100</td><td>64.0</td><td></td><td></td><td>45.0</td><td>37.0</td><td></td></tr>
+					</table>
+				</div>
+				
+				<div page-id="litter_accumulation" class="page info">
+					<h3>Litter Accumulation</h3>
+					<table>
+						<tr class="title"><td colspan="6">Jarrah Litter</td></tr>
+						<tr class="title">
+							<td rowspan="2">No. of years</td>
+							<td colspan="5">Canopy Cover %</td>
+						</tr>
+						<tr class="title"><td>20</td><td>40</td><td>50</td><td>60</td><td>80</td></tr>
+						<tr><td>1</td><td>1.0</td><td>1.4</td><td>2.4</td><td>3.0</td><td>3.5</td></tr>
+						<tr><td>2</td><td>1.6</td><td>2.6</td><td>4.0</td><td>4.4</td><td>5.0</td></tr>
+						<tr><td>3</td><td>2.5</td><td>4.0</td><td>5.2</td><td>6.2</td><td>7.2</td></tr>
+						<tr><td>4</td><td>3.4</td><td>5.2</td><td>6.3</td><td>7.4</td><td>8.5</td></tr>
+						<tr><td>5</td><td>4.2</td><td>6.2</td><td>7.5</td><td>8.6</td><td>9.8</td></tr>
+						<tr><td>6</td><td>5.0</td><td>7.2</td><td>8.5</td><td>9.6</td><td>10.8</td></tr>
+						<tr><td>7</td><td>5.8</td><td>8.1</td><td>9.5</td><td>10.6</td><td>11.8</td></tr>
+						<tr><td>8</td><td>6.5</td><td>9.0</td><td>10.3</td><td>11.5</td><td>12.8</td></tr>
+						<tr><td>10</td><td>7.7</td><td>10.3</td><td>11.5</td><td>13.0</td><td>14.4</td></tr>
+						<tr><td>12</td><td>8.8</td><td>11.5</td><td>12.7</td><td>14.2</td><td>15.5</td></tr>
+						<tr><td>15</td><td>10.5</td><td>13.0</td><td>14.2</td><td>15.6</td><td>17.5</td></tr>
+						<tr><td>20</td><td>12.7</td><td>15.0</td><td>16.5</td><td>17.8</td><td>20.2</td></tr>
+						<tr><td>25</td><td>14.8</td><td>17.0</td><td>18.5</td><td>20.0</td><td>22.5</td></tr>
+					</table>
+					<br>
+					<table>
+						<tr class="title"><td colspan="6">Karri Litter</td></tr>
+						<tr class="title">
+							<td rowspan="2">No. of years</td>
+							<td colspan="5">Canopy Cover %</td>
+						</tr>
+						<tr class="title"><td>30</td><td>50</td><td>60</td><td>80</td><td>100</td></tr>
+						<tr><td>1</td><td>4.0</td><td>6.0</td><td>7.0</td><td>9.5</td><td>12.5</td></tr>
+						<tr><td>2</td><td>6.2</td><td>8.5</td><td>9.7</td><td>12.7</td><td>16.0</td></tr>
+						<tr><td>3</td><td>8.2</td><td>10.7</td><td>12.2</td><td>15.5</td><td>19.0</td></tr>
+						<tr><td>4</td><td>10.0</td><td>13.0</td><td>14.5</td><td>18.0</td><td>21.7</td></tr>
+						<tr><td>5</td><td>11.7</td><td>15.0</td><td>16.7</td><td>20.2</td><td>24.2</td></tr>
+						<tr><td>6</td><td>13.5</td><td>16.7</td><td>18.7</td><td>22.5</td><td>26.7</td></tr>
+						<tr><td>7</td><td>15.2</td><td>18.7</td><td>20.7</td><td>24.7</td><td>29.2</td></tr>
+						<tr><td>8</td><td>17.0</td><td>20.3</td><td>22.5</td><td>26.7</td><td>31.5</td></tr>
+						<tr><td>9</td><td>18.5</td><td>22.5</td><td>24.5</td><td>29.0</td><td>33.7</td></tr>
+						<tr><td>10</td><td>20.2</td><td>24.2</td><td>26.2</td><td>31.0</td><td>36.0</td></tr>
+						<tr><td>15</td><td>25.0</td><td>29.0</td><td>34.0</td><td>41.0</td><td>46.0</td></tr>
+						<tr><td>20</td><td>30.0</td><td>35.0</td><td>40.0</td><td>47.0</td><td>52.0</td></tr>
+						<tr><td>25</td><td>35.0</td><td>40.0</td><td>44.0</td><td>53.0</td><td>58.0</td></tr>
+					</table>
+					<br>
+					<table>
+						<tr class="title"><td colspan="5">Wandoo Litter</td></tr>
+						<tr class="title">
+							<td rowspan="4">No. of years</td>
+							<td colspan="4">Basal Area (m<sup>2</sup>/ha)</td>
+						</tr>
+						<tr class="title">
+							<td>0 - 5</td>
+							<td>5 - 10</td>
+							<td>10 - 15</td>
+							<td>15 +</td>
+						</tr>
+						<tr class="title"><td colspan="4">or Canopy Cover %</td></tr>
+						<tr class="title"><td>20</td><td>40</td><td>60</td><td>80</td></tr>
+						<tr><td>1</td><td>0.6</td><td>1.0</td><td>1.6</td><td>2.2</td></tr>
+						<tr><td>2</td><td>1.1</td><td>1.6</td><td>2.4</td><td>3.8</td></tr>
+						<tr><td>3</td><td>1.6</td><td>2.3</td><td>3.2</td><td>4.8</td></tr>
+						<tr><td>4</td><td>2.0</td><td>2.8</td><td>4.0</td><td>5.7</td></tr>
+						<tr><td>5</td><td>2.3</td><td>3.3</td><td>4.6</td><td>6.6</td></tr>
+						<tr><td>6</td><td>2.5</td><td>3.7</td><td>5.1</td><td>7.8</td></tr>
+						<tr><td>8</td><td>2.8</td><td>4.3</td><td>6.0</td><td>8.2</td></tr>
+						<tr><td>10</td><td>3.2</td><td>4.8</td><td>6.7</td><td>9.2</td></tr>
+						<tr><td>12</td><td>3.6</td><td>5.4</td><td>7.3</td><td>10.0</td></tr>
+						<tr><td>15</td><td>4.0</td><td>6.0</td><td>8.2</td><td>11.2</td></tr>
+						<tr><td>20</td><td>4.6</td><td>7.0</td><td>9.5</td><td>12.8</td></tr>
+						<tr><td>25</td><td>5.0</td><td>7.7</td><td>10.4</td><td>14.4</td></tr>
+						<tr><td>30</td><td>5.4</td><td>8.3</td><td>11.2</td><td>15.8</td></tr>
+					</table>
+				</div>
+				
+				<div page-id="asset_susceptibility" class="page info">
+					<h3>Asset Susceptibility</h3>
+					<div class="scroll">
+						<img src="./images/information/asset_susceptibility.PNG">
+					</div>
+				</div>
+				
+			</div>
+		</div>
+	
+	</div>
+	
+</body>
+</html>
